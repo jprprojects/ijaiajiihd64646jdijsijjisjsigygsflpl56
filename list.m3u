@@ -7,7 +7,7 @@ https://stream3.camara.gov.br/tv1/manifest.m3u8
 https://tv01.zas.media:1936/rtntv/rtntv/chunklist.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO", CANAL FUTURA
 http://168.205.87.198:8555/live/1216/123456/67.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", TV MAIS ABC
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/YAP13gY.jpeg", TV MAIS ABC
 https://video01.soultv.com.br/tvmaisabc/tvmaisabc/playlist.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" aspect-ratio="Original", TV TURFE
 http://168.205.87.198:8555/live/1216/123456/152.m3u8
@@ -115,7 +115,7 @@ https://stmv1.paineltv.net/glnfilmes/glnfilmes/chunklist_w1263571980.m3u8
 https://appletree-mytime-samsungbrazil.amagi.tv/playlist.m3u8
 #EXTINF:0 type="stream" group="TV AO VIVO" logo="https://loga.net.br/wp-content/uploads/2020/03/196_Cinebrasil-TV-SD.png", CINE BRASIL TV
 https://cdn-2.nxplay.com.br/Cinebrasil/index.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", INSPIRE
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgYeChMNiW1Bq3NIkVsRv_2VQJk-1MNnSbxYl_2kyJBA&s", INSPIRE
 http://cdn.connectbr.com.br/Inspire/index.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://peganet.com.br/wp-content/uploads/2020/11/121-HELLO-TV.png", HELLO TV
 http://cdn.connectbr.com.br/Hello/index.m3u8
@@ -137,7 +137,7 @@ http://pharay.club:8080/6H0UPLyNNp/2w6pWIYdMv/54244
 https://cdn.live.br1.jmvstream.com/w/LVW-9730/LVW9730_LmUwslM8jt/playlist.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://upload.wikimedia.org/wikipedia/pt/f/f8/Logotipo_da_TV_Thathi.png", THATHI TV
 https://cdn-grupo-10049.ciclano.io:1443/grupo-10049/grupo-10049/chunklist_w558279794.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", VINTE E QUATRO NEWS
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/65yX8UE.png", VINTE E QUATRO NEWS
 https://cdn2.connectbr.com.br/24_news/index.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://listaiptv.gratis/logos/imagens/recnews.png", Record News
 https://rnw-rn.otteravision.com/rnw/rn/rnw_rn.m3u8
@@ -165,15 +165,15 @@ https://5ea86ddd14ce7.streamlock.net/live/cable09061970/playlist.m3u8
 https://mdstrm.com/live-stream-playlist/632391734be92a791e2750e6.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Logo_RTVE.svg/2560px-Logo_RTVE.svg.png", RTVE
 https://rtvelivestream.akamaized.net/rtvesec/24h/24h_main_720.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", N MAS (MX)
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/PGSUEWN.png", N MAS (MX)
 https://channel02-notusa.akamaized.net/hls/live/2023914/event01/index_6.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Milenio_%282018-10-27%29.svg/2560px-Milenio_%282018-10-27%29.svg.png", MILENIO TELEVISION
 https://mdstrm.com/live-stream-playlist/610178c7db32a4112d994650.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Deutsche_Welle_symbol_2012.svg/1280px-Deutsche_Welle_symbol_2012.svg.png", DEUTSCHE WELLE ESPANHOL
 https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", CITY TV
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/oDUZVy2.jpeg", CITY TV
 https://isgo.newclews.workers.dev/stream/UCv5Oy_TJFvGKXjeNzzJE_PQ/master.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", TELE MEDELLIN
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/PNZ66ck.png", TELE MEDELLIN
 https://d3cglye48cl6m2.cloudfront.net/out/v1/37d85e2ab37c4873aed6849fe74e78b8/index.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Se%C3%B1al_Colombia_logo.svg/1200px-Se%C3%B1al_Colombia_logo.svg.png", SENAL COLOMBIA
 https://streaming.rtvc.gov.co/TV_Senal_Colombia_live/smil:live.smil/playlist.m3u8
@@ -205,7 +205,7 @@ https://stmv1.paineltv.net/ulbtv/ulbtv/chunklist_w330097200.m3u8
 http://200.194.238.229:8383/live/urbankids/playlist.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/x33MwPN.png" aspect-ratio="4:3", RETRÔ CARTOON
 https://stmv1.srvif.com/retrotv/retrotv/chunklist_w687347979.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", TOONCAST
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/AJI9zTt.jpeg", TOONCAST
 https://brflu.walk-tv.com/5838/index.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://3.bp.blogspot.com/-Z6yTZ5Cgxn0/V8Zo7aw9mlI/AAAAAAAAAe4/Z0bzJOnAFXkj0gnrRWUiiXiod0GcMPXkgCLcB/s400/A78.png" aspect-ratio="4:3", KIDS CHANNEL
 http://168.205.87.198:8555/live/1216/123456/143.m3u8
