@@ -3,7 +3,7 @@
 http://168.205.87.198:8555/live/1216/123456/101.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://www.camara.leg.br/tema/assets/images/imagens-compartilhamento/tv-camara.jpg", TV CÂMARA
 https://stream3.camara.gov.br/tv1/manifest.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", RTN
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/x6R0fTS.jpeg", RTN
 https://tv01.zas.media:1936/rtntv/rtntv/chunklist.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO", CANAL FUTURA
 http://168.205.87.198:8555/live/1216/123456/67.m3u8
@@ -21,11 +21,11 @@ https://isgo.newclews.workers.dev/stream/UCVrKQMmA2ew9LFzeIDaOFgw/master.m3u8
 https://isgo.newclews.workers.dev/stream/UCfYrK5JU5EznsnK3wQE7iIg/master.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="http://files.adventistas.org/noticias/pt/2014/12/Novo-Tempo-comeca-novo-programa-sobre-criacionismo.png", TV NOVO TEMPO
 https://stream.live.novotempo.com/tv/smil:tvnovotempo.smil/playlist.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", RIT
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/NSLsoEU.jpeg", RIT
 https://acesso.ecast.site:3648/live/ritlive.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/le7gs8M.png", TV METROPOLE
 https://cdn-fundacao-2110.ciclano.io:1443/fundacao-2110/fundacao-2110/chunklist_w1432254016.m3u8
-#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="", CNT
+#EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://i.imgur.com/SCkmrKm.png", CNT
 https://iptv.vivatele.com:443/live/viva_padrao/viva2384/90.m3u8
 #EXTINF:0 type="stream" group-title="TV AO VIVO" logo="https://tcmhd.com.br/files/2020-12/1608743519_logo-tcm-10-hd.png?993794d440", TCM 10
 https://live.tcm10.com.br/tcm10hd/stream.m3u8
