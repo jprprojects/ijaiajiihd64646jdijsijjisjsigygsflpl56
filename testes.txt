@@ -1,6 +1,0 @@
-http://localhost:5555/api/videos/googlephotos?uri=https://photos.google.com/share/AF1QipNBdICjbxFOqZqTCFiVLh5PCtReKfF_sHRnXIVdbtvfajTBd2hs1AYbhWR_vF1Fag/photo/AF1QipNjta-kjwtRhV9vecmtwaJEVQGk59-UBHcVxGLN?key=ME95Sk81NEh3a1F2WkdkamRkS251R2F6b2NyS1Zn
-
-http://localhost:5555/api/video?uri=https://photos.google.com/share/AF1QipNBdICjbxFOqZqTCFiVLh5PCtReKfF_sHRnXIVdbtvfajTBd2hs1AYbhWR_vF1Fag/photo/AF1QipNjta-kjwtRhV9vecmtwaJEVQGk59-UBHcVxGLN?key=ME95Sk81NEh3a1F2WkdkamRkS251R2F6b2NyS1Zn
-
-http://localhost:5555/api/video?uri=https://gofilmes.me/power-rangers
-
