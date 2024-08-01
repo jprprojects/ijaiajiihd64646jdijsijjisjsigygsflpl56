@@ -1,5 +1,5 @@
-const axios = require("axios");
 const cheerio = require("cheerio");
+const axios = require("axios");
 
 class Grab {
   async getVideo(uri) {
@@ -26,23 +26,29 @@ class Grab {
 
   async extractGofilmesVideo(uri) {
     try {
+      // 1. Acessar a página principal e encontrar o link que contém 'tf.php'
       const mainPage = await axios.get(uri);
-      const $ = cheerio.load(mainPage.data);
-      const tfPageUrl = this.extractHref($, "tf.php");
+      const $main = cheerio.load(mainPage.data);
+      const tfPageUrl = $main("a[href*='tf.php']").attr("href");
 
       if (!tfPageUrl) {
         throw new Error("Link to 'tf.php' not found");
       }
 
-      const fullTfPageUrl = new URL(tfPageUrl, uri).href;
+      // 2. Navegar até o link 'tf.php'
+      const fullTfPageUrl = new URL(tfPageUrl, uri).href; // Resolve o URL relativo
       const tfPage = await axios.get(fullTfPageUrl);
-      const tfHtml = tfPage.data;
-      const scriptContent = this.extractScriptContent(tfHtml, 3);
+      const $tfPage = cheerio.load(tfPage.data);
+
+      // 3. Encontrar o URL do vídeo na página 'tf.php'
+      const scripts = $tfPage("script");
+      const scriptContent = scripts.eq(3).html(); // Pega o quarto script
 
       if (!scriptContent) {
         throw new Error("Quarto script não encontrado");
       }
 
+      // Encontrar a URL do vídeo no conteúdo do script
       const videoUrlMatch = scriptContent.match(
         /sources:\s*\[\{'file':'(https?:\/\/[^']+)'/
       );
@@ -62,12 +68,17 @@ class Grab {
 
   async Blogger({ uri }) {
     try {
-      const response = await axios.get(uri);
-      const $ = cheerio.load(response.data);
-      const srcs = this.extractIframes($);
-      const results = await Promise.all(
-        srcs.map(async (src) => await this.multi(src))
-      );
+      const url = await axios.get(uri);
+      const $ = cheerio.load(url.data);
+      const todos = [];
+      $("iframe").each((index, item) => {
+        const $element = $(item);
+        const src = $element.attr("src");
+        if (src) {
+          todos.push(src);
+        }
+      });
+      const results = await Promise.all(todos.map((src) => multi(src)));
       return results;
     } catch (error) {
       throw new Error(`Failed to fetch Blogger videos: ${error.message}`);
@@ -77,14 +88,38 @@ class Grab {
   async CloudVideo({ uri }) {
     try {
       const its = uri.replace("https://cloudvideo.tv/", "");
-      const response = await axios.get(uri);
-      const $ = cheerio.load(response.data);
-      const videoHlsOnly = this.extractVideoHlsOnly($);
-      const todos = this.extractCloudVideoData($, its);
+      const url = await axios.get(uri);
+      const $ = cheerio.load(url.data);
+      const todos = {
+        video_hls_only: cheerio.load(url.data)("video > source").attr("src"),
+        data: [],
+      };
+      const promises = [];
+      $("#download > a").each((i, item) => {
+        const $element = $(item);
+        const m = $element
+          .attr("onclick")
+          .replace("download_video(", "")
+          .replace(")", "")
+          .replace(`'${its}'`, "");
+        let mode = null;
+        if (m.includes(`'n'`)) mode = "n";
+        if (m.includes(`'h'`)) mode = "h";
+        if (m.includes(`'l'`)) mode = "l";
+
+        if (mode) {
+          todos.data.push({
+            title: $element.text(),
+            url: `https://cloudvideo.tv/dl?op=download_orig&id=${its}&mode=n&hash=${m
+              .replace(`,'${mode}','`, "")
+              .replace(`'`, "")}`,
+          });
+        }
+      });
 
       const updatedData = await Promise.all(
         todos.data.map(async (item) => {
-          item.url = await this.cloud(item.url);
+          item.url = await cloud(item.url);
           return item;
         })
       );
@@ -98,9 +133,12 @@ class Grab {
 
   async GooglePhotos(uri) {
     try {
-      const response = await axios.get(uri);
-      const $ = cheerio.load(response.data);
-      const item = this.extractGooglePhotosScript($);
+      const fetch = await axios.get(uri);
+      const $ = cheerio.load(fetch.data);
+      const item = $("body > script")
+        .eq(5)
+        .html()
+        ?.match(/\bhttps?:\/\/[^,\s()<>]+/gi);
       let source;
       if (item) {
         source = item
@@ -113,100 +151,54 @@ class Grab {
     }
   }
 
-  async Mp4Upload(uri) {
+  async Mp4Upload(i) {
     try {
-      const response = await axios.get(uri);
-      const $ = cheerio.load(response.data);
-      const scriptContent = this.extractMp4UploadScript($);
-      return this.explodeMp4Upload(scriptContent);
+      const url = await axios.get(i);
+      const $ = cheerio.load(url.data)("body > script:nth-child(9)").html();
+      const items = $.substring(926);
+      const tt = `${items.slice(0, -15)}`;
+      return explodeMp4Upload(tt);
     } catch (error) {
       throw new Error(`Failed to fetch Mp4Upload: ${error.message}`);
     }
   }
 
-  async RapidVideo(uri) {
+  async RapidVideo(i) {
     try {
-      const response = await axios.get(uri);
-      const $ = cheerio.load(response.data);
-      const src = this.extractRapidVideoSrc($);
-      return src;
+      const url = await axios.get(i);
+      return cheerio.load(url.data)("source").attr("src");
     } catch (error) {
       throw new Error(`Failed to fetch RapidVideo: ${error.message}`);
     }
   }
-
-  // Helper functions to parse HTML and extract needed data
-  extractHref($, substring) {
-    // Implement a way to extract href from HTML content using cheerio
-    return null; // Replace with actual implementation
-  }
-
-  extractScriptContent(html, index) {
-    // Implement a way to extract specific script content using cheerio
-    return null; // Replace with actual implementation
-  }
-
-  extractIframes($) {
-    // Implement a way to extract src from iframe tags using cheerio
-    return []; // Replace with actual implementation
-  }
-
-  extractVideoHlsOnly($) {
-    // Implement a way to extract video HLS URL using cheerio
-    return null; // Replace with actual implementation
-  }
-
-  extractCloudVideoData($, its) {
-    // Implement a way to extract CloudVideo data using cheerio
-    return { data: [] }; // Replace with actual implementation
-  }
-
-  extractGooglePhotosScript($) {
-    // Implement a way to extract Google Photos script using cheerio
-    return []; // Replace com implementação real
-  }
-
-  extractMp4UploadScript($) {
-    // Implement a way to extract Mp4Upload script usando cheerio
-    return ""; // Replace com implementação real
-  }
-
-  extractRapidVideoSrc($) {
-    // Implement a way to extract RapidVideo src usando cheerio
-    return null; // Replace com implementação real
-  }
-
-  async cloud(i) {
-    try {
-      const response = await axios.get(i);
-      const $ = cheerio.load(response.data);
-      // Implement a way to extract the href attribute using cheerio
-      return null; // Replace with actual implementation
-    } catch (error) {
-      throw new Error(`Failed to fetch Cloud link: ${error.message}`);
-    }
-  }
-
-  async multi(i) {
-    try {
-      const response = await axios.get(i);
-      const $ = cheerio.load(response.data);
-      // Implement a way to parse video config using cheerio
-      return {}; // Replace with actual implementation
-    } catch (error) {
-      throw new Error(`Failed to fetch multi source: ${error.message}`);
-    }
-  }
-
-  async explodeMp4Upload(i) {
-    const t = i.split("video|")[1];
-    const m = t.split("|282");
-    if (i.includes("|www2|")) {
-      return `https://www2.mp4upload.com:282/d/${m[0]}/video.mp4`;
-    } else if (i.includes("|s3|")) {
-      return `https://s3.mp4upload.com:282/d/${m[0]}/video.mp4`;
-    }
-  }
 }
 
-export default new Grab();
+const explodeMp4Upload = async (i) => {
+  const t = i.split("video|")[1];
+  const m = t.split("|282");
+  if (i.includes("|www2|")) {
+    return `https://www2.mp4upload.com:282/d/${m[0]}/video.mp4`;
+  } else if (i.includes("|s3|")) {
+    return `https://s3.mp4upload.com:282/d/${m[0]}/video.mp4`;
+  }
+};
+
+const cloud = async (i) => {
+  const url = await axios.get(i);
+  return cheerio
+    .load(url.data)('a[class="btn btn-primary btn-block btn-signin"]')
+    .attr("href");
+};
+
+const multi = async (i) => {
+  const url = await axios.get(i);
+  const $ = cheerio.load(url.data);
+  const data = $("script")[0].children[0];
+  const rp = JSON.parse(data.data.replace("var VIDEO_CONFIG =", ""));
+  return {
+    poster: rp.thumbnail,
+    url: rp.streams[0].play_url,
+  };
+};
+
+module.exports = new Grab();
